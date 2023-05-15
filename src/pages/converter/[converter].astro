@@ -1,0 +1,18 @@
+---
+import Layout from "~/layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { converter: "base64" } },
+    { params: { converter: "hex" } },
+    { params: { converter: "octal" } },
+    { params: { converter: "binary" } },
+  ];
+}
+
+const { converter } = Astro.params;
+---
+
+<Layout title={`${converter} converter`} useSidebar={true}>
+  <div></div>
+</Layout>

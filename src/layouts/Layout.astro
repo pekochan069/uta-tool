@@ -1,26 +1,18 @@
 ---
-import Header from "~/components/Header";
+import BaseLayout from "./BaseLayout.astro";
+import Header from "~/components/layout/Header.astro";
 
 export interface Props {
   title: string;
+  useSidebar?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, useSidebar = false } = Astro.props;
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body
-    class="bg-stone-50 dark:text-stone-400 text-stone-500 dark:bg-stone-900"
-  >
-		<Header />
+<BaseLayout title={title}>
+  <Header useSidebar={useSidebar} />
+  <main class="container mx-auto max-w-[96rem] px-2 py-4 md:px-4">
     <slot />
-  </body>
-</html>
+  </main>
+</BaseLayout>

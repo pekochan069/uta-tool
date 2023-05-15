@@ -1,11 +1,14 @@
-import { defineConfig } from 'astro/config';
-
+import { defineConfig } from "astro/config";
 import solidJs from "@astrojs/solid-js";
-import UnoCSS from "unocss/astro";
+import vercel from "@astrojs/vercel/serverless";
+import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [solidJs(), UnoCSS({
-    injectReset: "@unocss/reset/tailwind.css"
-  })]
+  integrations: [solidJs(), tailwind()],
+  output: "server",
+  adapter: vercel(),
+  experimental: {
+    assets: true,
+  },
 });
